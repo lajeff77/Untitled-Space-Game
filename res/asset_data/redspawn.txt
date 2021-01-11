@@ -1,0 +1,2 @@
+/images/FederationSmall1.png
+ship

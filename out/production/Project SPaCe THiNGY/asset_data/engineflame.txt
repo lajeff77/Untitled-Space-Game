@@ -1,0 +1,6 @@
+/images/RedFlame1.png
+animation
+100
+4
+15
+15

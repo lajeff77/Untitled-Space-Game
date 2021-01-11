@@ -1,0 +1,2 @@
+/images/SmallRock1.png
+collider
