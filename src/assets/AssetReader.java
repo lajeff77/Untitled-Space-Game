@@ -20,7 +20,7 @@ import java.util.Scanner;
 public class AssetReader
 {
     private static final String MASTER_PATH = "masterlist.txt";//"/assets/masterlist.txt";
-    private static final String ABSOLUTE = "C:/Users/lajef/Desktop/Project SPaCe THiNGY JaVa/res/asset_data/";
+    private static final String ABSOLUTE = "/Users/laurynjefferson/Documents/Games/Untitled-Space-Game/res/asset_data/";
     private static Scanner scanner;
     private static String[] assetList;
 
