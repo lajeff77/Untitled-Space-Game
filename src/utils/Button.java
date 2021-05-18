@@ -11,8 +11,6 @@
  */
 package utils;
 
-import main.Application;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -20,7 +18,7 @@ import java.awt.Graphics;
 public class Button
 {
     //constants
-    private final Font MY_FONT = Application.SMALL_FONT;
+    private final Font MY_FONT = Font.getFont("arial");//Application.SMALL_FONT;
 
     //objects
     private static Color outline = Color.GRAY,body = Color.LIGHT_GRAY, highlightColor = Color.WHITE, textColor = Color.BLACK;

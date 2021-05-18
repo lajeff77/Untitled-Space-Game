@@ -2,21 +2,29 @@ package main;
 
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.StateBasedGame;
-import states.GameState2;
+import server.GameClient;
+import server.GameServer;
+import states.GameState;
 
 public class GameLauncher extends StateBasedGame {
+
+    public static int screenWidth = 800;
+    public static int screenHeight = 600;
 
     public GameLauncher()
     {
         super("Untitled Space Game");
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws Exception {
+        //init server
+        GameServer.init();
+        GameClient.init();
         try
         {
             AppGameContainer app = new AppGameContainer(new GameLauncher());
-            app.setDisplayMode(800,600, false);
+            app.setDisplayMode(screenWidth,screenHeight, false);
+            app.setAlwaysRender(true);
             app.setTargetFrameRate(60);
             app.start();
 
@@ -28,6 +36,6 @@ public class GameLauncher extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gameContainer) throws SlickException {
-        this.addState(new GameState2());
+        this.addState(new GameState());
     }
 }

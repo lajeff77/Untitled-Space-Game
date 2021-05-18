@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Kyronet">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Libraries/kryonet-master/lib/jsonbeans-0.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Libraries/kryonet-master/lib/kryo-2.23.1-SNAPSHOT-all-debug.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

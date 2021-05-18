@@ -1,75 +1,63 @@
-/**
- * <h1>GameState class</h1>
- * 
- * <p>This class controls the state of playing the game.
- * It manages all the interactions between the other players
- * and the status of the game.</p>
- * 
- * <p>Created:7/13/18</p>
- * @version 7/13/18
- * 
- * @author Lauryn Jefferson
- */
 package states;
 
+import game.*;
+import server.GameClient;
+import org.newdawn.slick.*;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
+import server.GameServer;
 
-import java.awt.Graphics2D;
+import java.util.Hashtable;
 
+public class GameState extends BasicGameState {
 
-import game.Background;
-import game.Ship;
+    private StateBasedGame game;
+    private Hashtable<Short, Ship> players;
 
+    @Override
+    public void init(GameContainer gameContainer, StateBasedGame stateBasedGame) throws SlickException {
+        game = stateBasedGame;
+        players = new Hashtable<>();
+        // gameContainer.setShowFPS(false);
+    }
 
-public class GameState implements State
-{
-	//constants
-	
-	//objects
-	private Ship player;
-	private Background bkg;
-	
-	//variable
-	private boolean gameOver;
+    @Override
+    public void update(GameContainer gameContainer, StateBasedGame stateBasedGame, int i) throws SlickException {
+        int delta = i;
+        GameClient.update(gameContainer);
+        if(GameServer.initalized)
+            GameServer.update();
+        GameClient.getShipList().forEach((id,math) ->
+        {
+            if(players.get(math.getId()) == null)
+            {
+                try {
+                    players.put(math.getId(), new Ship("res/images/FederationSmall1.png", math.getX(), math.getY()));
+                } catch (SlickException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("created ship");
+            }
+            else
+            {
+                players.get(math.getId()).setX(math.getX());
+                players.get(math.getId()).setY(math.getY());
+            }
+        });
+        players.forEach((id,s) -> s.update(gameContainer));
+    }
 
-	/**
-	 * <h2>GameState() constructor</h2>
-	 * 
-	 * <p>This constructor sets up the game.</p>
-	 */
-	public GameState()
-	{
-		bkg = new Background();
-		player = new Ship(bkg.getShip(),bkg.getAssets());
-		gameOver = false;
-	}
-	
-	/**
-	 * <h2>update() method</h2>
-	 * 
-	 * <p>This method keeps the game flowing.</p>
-	 */
-	public void update()
-	{
-		bkg.update();
-		if(!gameOver)
-		{
-			player.update();
-		}
-	}
-	
-	/**
-	 * <h2>render() method</h2>
-	 * 
-	 * <p>This method draws the game to the screen with the given
-	 * graphics object.</p>
-	 * 
-	 * @param g graphics for location to draw to
-	 */
-	public void render(Graphics2D g)
-	{
-		//draw entities
-		bkg.render(g);
-		player.render(g);
-	}
+    @Override
+    public void render(GameContainer gameContainer, StateBasedGame stateBasedGame, Graphics graphics) throws SlickException {
+        graphics.setBackground(new Color(24,20,37));
+        graphics.setAntiAlias(true);
 
+        players.forEach((id,s) -> s.render(graphics));
+    }
+
+    @Override
+    public int getID() {
+        return 0;
+    }
 }
+
