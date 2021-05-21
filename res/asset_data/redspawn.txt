@@ -1,2 +1,2 @@
-/images/FederationSmall1.png
+res/images/FederationSmall1.png
 ship

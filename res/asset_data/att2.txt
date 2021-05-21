@@ -1,2 +1,2 @@
-/images/KinTurret1.png
+res/images/KinTurret1.png
 rotating

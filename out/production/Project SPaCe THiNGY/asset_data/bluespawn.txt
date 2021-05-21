@@ -1,2 +1,2 @@
-/images/FederationSmall1V2.png
+res/images/FederationSmall1V2.png
 user

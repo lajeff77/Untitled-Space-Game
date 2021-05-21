@@ -1,2 +1,2 @@
-/images/ArmorPlate1.png
+res/images/ArmorPlate1.png
 basic

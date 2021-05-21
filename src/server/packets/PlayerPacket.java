@@ -8,6 +8,7 @@ public class PlayerPacket {
     {
         this((short)0,0f,0f);
     }
+
     public PlayerPacket(short id, float playerX, float playerY)
     {
         this.id = id;
@@ -30,18 +31,9 @@ public class PlayerPacket {
         return playerX;
     }
 
-//    public void setPlayerX(float playerX)
-//    {
-//        this.playerX = playerX;
-//    }
-
     public float getPlayerY()
     {
         return playerY;
     }
 
-//    public void setPlayerY(float playerY)
-//    {
-//        this.playerY = playerY;
-//    }
 }

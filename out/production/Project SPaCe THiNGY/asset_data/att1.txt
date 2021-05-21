@@ -1,4 +1,4 @@
-/images/KinTurret1.png
+res/images/KinTurret1.png
 turret
-/images/projectile1.png
+res/images/projectile1.png
 234123

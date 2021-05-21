@@ -1,2 +1,2 @@
-/images/LargeRock1.png
+res/images/LargeRock1.png
 collider

@@ -28,8 +28,8 @@ public class AssetReader
     {
         assetList = new String[255];
         readMasterList();
-        /*for(int i = 0; i < assetList.length; i++)
-            System.out.println(assetList[i]);*/
+//        /*for(int i = 0; i < assetList.length; i++)
+//            System.out.println(assetList[i]);*/
     }
 
     private static void readMasterList()
