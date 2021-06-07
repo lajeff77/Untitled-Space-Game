@@ -3,12 +3,12 @@ package assets;
 import org.newdawn.slick.SlickException;
 import server.GameClient;
 
-public class RotatingAsset2 extends StillAsset {
+public class RotatingAsset extends StillAsset {
 
     protected short id;
     protected double angle;
 
-    public RotatingAsset2(String ref, float x, float y, boolean hasAssets, GameAsset parent, short clientID, short id) throws SlickException {
+    public RotatingAsset(String ref, float x, float y, boolean hasAssets, GameAsset parent, short clientID, short id) throws SlickException {
         super(ref, x, y, hasAssets, parent, clientID);;
         this.asset.setCenterOfRotation((this.asset.getWidth()/2), (this.asset.getHeight()/2));
         this.id = id;

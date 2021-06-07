@@ -62,9 +62,9 @@ public class StillAsset extends GameAsset
     {
         //set all the angles of the rotating assets
         for(Object a: assetsList)
-            if(a instanceof RotatingAsset2)
+            if(a instanceof RotatingAsset)
             {
-                RotatingAsset2 r = (RotatingAsset2)a;
+                RotatingAsset r = (RotatingAsset)a;
                 if(angles.length > r.getId())
                     r.setAngle(angles[r.getId()]);
             }

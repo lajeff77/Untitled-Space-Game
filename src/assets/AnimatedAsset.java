@@ -8,11 +8,11 @@ import org.newdawn.slick.SpriteSheet;
 
 import java.util.ArrayList;
 
-public class AnimatedAsset2 extends GameAsset {
+public class AnimatedAsset extends GameAsset {
     protected Animation asset;
     protected ArrayList<GameAsset> assetsList;
 
-    public AnimatedAsset2(String ref, float x, float y, int duration, int width, int height, boolean hasAssets, GameAsset parent) throws SlickException
+    public AnimatedAsset(String ref, float x, float y, int duration, int width, int height, boolean hasAssets, GameAsset parent) throws SlickException
     {
         this.ref = ref;
         asset = new Animation(new SpriteSheet(ref, width, height), duration);

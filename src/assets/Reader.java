@@ -1,11 +1,6 @@
 package assets;
 
-import org.newdawn.slick.Game;
-import org.newdawn.slick.Graphics;
-import utils.ResourceLoader;
-
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
@@ -90,14 +85,14 @@ public class Reader {
                     break;
                 case "rotating":
                 case "turret":
-                    asset = new RotatingAsset2(path,x,y,false,parent,parent.clientID,rotatingID);
+                    asset = new RotatingAsset(path,x,y,false,parent,parent.clientID,rotatingID);
                     rotatingID++;
                     break;
                 case "animation":
                     int duration = scanner.nextInt();
                     int width = scanner.nextInt();
                     int height = scanner.nextInt();
-                    asset = new AnimatedAsset2(path,x,y,duration,width,height,false, parent);
+                    asset = new AnimatedAsset(path,x,y,duration,width,height,false, parent);
                     break;
                 default:
                     asset = new StillAsset(path,x,y,false, parent, parent.clientID);
