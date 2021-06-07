@@ -4,9 +4,10 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 import game.ShipMath;
-import org.newdawn.slick.Input;
 import server.packets.InputPacket;
 import server.packets.PlayerPacket;
+import server.packets.RotationPointPacket;
+
 import java.io.IOException;
 import java.util.Hashtable;
 
@@ -26,8 +27,10 @@ public class GameServer extends Listener {
             if(logMessages)
                 System.out.println("---------- Starting Kryonet Server ---------- ");
             server = new Server();
+            server.getKryo().register(double[].class);
             server.getKryo().register(PlayerPacket.class);
             server.getKryo().register(InputPacket.class);
+            server.getKryo().register(RotationPointPacket.class);
             server.bind(tcpPort, udpPort);
             server.start();
             server.addListener(new GameServer());
@@ -46,7 +49,7 @@ public class GameServer extends Listener {
         for(short i = 0; i < shipList.size(); i++)
         {
             shipList.get(i).update();
-            PlayerPacket packet = new PlayerPacket(i,shipList.get(i).getX(),shipList.get(i).getY());
+            PlayerPacket packet = new PlayerPacket(i,shipList.get(i).getX(),shipList.get(i).getY(),shipList.get(i).getAngles());
             server.sendToAllTCP(packet);
         }
     }
@@ -58,7 +61,7 @@ public class GameServer extends Listener {
         ShipMath ship;
         ship = new ShipMath(id,200f * (id+1),200f);
         shipList.put(id,ship);
-        PlayerPacket packet = new PlayerPacket(id,shipList.get(id).getX(),shipList.get(id).getY());
+        PlayerPacket packet = new PlayerPacket(id,shipList.get(id).getX(),shipList.get(id).getY(), ship.getAngles());
         c.sendTCP(packet);
         id++;
     }
@@ -73,6 +76,14 @@ public class GameServer extends Listener {
 //               System.out.println("---------- Received Packet From Client ----------");
 //                System.out.println("client " + packet.getId() + " sent input");
 //            }
+        }
+
+        if(o instanceof RotationPointPacket)
+        {
+            RotationPointPacket packet = (RotationPointPacket) o;
+            ShipMath ship = shipList.get(packet.getShipId());
+            System.out.println("adding rotation point to ship id " + packet.getShipId());
+            ship.addPoint(packet.getId(),packet.getX(),packet.getY());
         }
     }
 

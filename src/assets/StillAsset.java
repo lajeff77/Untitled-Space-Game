@@ -11,9 +11,10 @@ public class StillAsset extends GameAsset
     protected Image asset;
     protected ArrayList<GameAsset> assetsList;
 
-    public StillAsset(String ref, float x, float y, boolean hasAssets, GameAsset parent) throws SlickException {
+    public StillAsset(String ref, float x, float y, boolean hasAssets, GameAsset parent, short clientID) throws SlickException {
         this.ref = ref;
         asset = new Image(ref);
+        this.clientID = clientID;
         if(parent != null)
         {
             this.parent = parent;
@@ -55,5 +56,17 @@ public class StillAsset extends GameAsset
             for(GameAsset a: assetsList)
                 a.render(g);
         }
+    }
+
+    public void processAngles(double[] angles)
+    {
+        //set all the angles of the rotating assets
+        for(Object a: assetsList)
+            if(a instanceof RotatingAsset2)
+            {
+                RotatingAsset2 r = (RotatingAsset2)a;
+                if(angles.length > r.getId())
+                    r.setAngle(angles[r.getId()]);
+            }
     }
 }

@@ -3,17 +3,19 @@ package server.packets;
 public class PlayerPacket {
     private short id;
     private float playerX, playerY;
+    private double[] angles;
 
     public PlayerPacket()
     {
-        this((short)0,0f,0f);
+        this((short)0,0f,0f, new double[1]);
     }
 
-    public PlayerPacket(short id, float playerX, float playerY)
+    public PlayerPacket(short id, float playerX, float playerY, double[] angles)
     {
         this.id = id;
         this.playerX = playerX;
         this.playerY = playerY;
+        this.angles = angles;
     }
 
     public short getId()
@@ -36,4 +38,7 @@ public class PlayerPacket {
         return playerY;
     }
 
+    public double[] getAngles() {
+        return angles;
+    }
 }

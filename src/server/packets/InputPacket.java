@@ -1,7 +1,5 @@
 package server.packets;
 
-import org.newdawn.slick.Input;
-
 public class InputPacket
 {
     private short id;

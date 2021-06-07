@@ -11,6 +11,7 @@ public abstract class GameAsset
     protected int width, height;
     protected GameAsset parent;
     protected float oldParentX, oldParentY;
+    protected short clientID;
 
     public abstract void update();
     public abstract void render(Graphics g);

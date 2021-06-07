@@ -16,6 +16,7 @@ public class Reader {
     private static final String ABSOLUTE = "/Users/laurynjefferson/Documents/Games/Untitled-Space-Game/res/asset_data/";
     private static Scanner scanner;
     private static String[] assetList;
+    private static short rotatingID = 0;
 
     public static void init()
     {
@@ -87,6 +88,11 @@ public class Reader {
                 case "ship":
                 case "null":
                     break;
+                case "rotating":
+                case "turret":
+                    asset = new RotatingAsset2(path,x,y,false,parent,parent.clientID,rotatingID);
+                    rotatingID++;
+                    break;
                 case "animation":
                     int duration = scanner.nextInt();
                     int width = scanner.nextInt();
@@ -94,7 +100,7 @@ public class Reader {
                     asset = new AnimatedAsset2(path,x,y,duration,width,height,false, parent);
                     break;
                 default:
-                    asset = new StillAsset(path,x,y,false, parent);
+                    asset = new StillAsset(path,x,y,false, parent, parent.clientID);
                     break;
             }
         }catch (Exception e)
